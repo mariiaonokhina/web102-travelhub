@@ -2,6 +2,12 @@
   margin: 0;
   padding: 0;
 }
+
+body {
+  height: 92vh;
+  width: 100vw;
+}
+
 .navbar-container {
   background-color: rgb(170, 234, 212);
   height: 8vh;
@@ -44,3 +50,16 @@
   justify-content: space-evenly;
 }
 
+.CreateForm {
+  border: 2px black solid;
+  height: 65vh;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  place-items: center;
+  position: relative;
+  left: 50%;
+  top: 3vh;
+  transform: translateX(-50%);
+}
