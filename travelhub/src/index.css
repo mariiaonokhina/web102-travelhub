@@ -1,0 +1,46 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.navbar-container {
+  background-color: rgb(170, 234, 212);
+  height: 8vh;
+  width: 100vw;
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  place-items: center;
+  justify-content: space-around;
+}
+
+.link-item {
+  color: black;
+  text-decoration: none;
+  height: fit-content;
+  width: fit-content;
+}
+
+.link-item:visited {
+  color: black;
+}
+
+.logo {
+  height: 8vh;
+  width: 10vw;
+}
+
+#logo-img {
+  position: relative;
+  height: 8.3vh;
+  border-radius: 30px;
+}
+
+.right-navbar {
+  height: 8vh;
+  width: 40vw;
+  display: flex;
+  flex-direction: row;
+  place-items: center;
+  justify-content: space-evenly;
+}
+
