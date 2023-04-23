@@ -4,7 +4,7 @@ Submitted by: **Mariia Onokhina**
 
 This web app: **insert description**
 
-Time spent: **3** hours spent in total
+Time spent: **4** hours spent in total
 
 ## Required Features
 
@@ -12,7 +12,7 @@ The following **required** functionality is completed:
 
 - [X] **A create form that allows the user to create posts**
 - [ ] **Posts have a title and optionally additional textual content and/or an image added as an external image URL**
-- [ ] **A home feed displaying previously created posts**
+- [X] **A home feed displaying previously created posts**
 - [ ] **By default, the time created, title, and number of upvotes for each post is shown on the feed**
 - [ ] **Clicking on a post shall direct the user to a new page for the selected post**
 - [ ] **Users can sort posts by either their created time or upvotes count**
