@@ -21,7 +21,8 @@ const Feed = () => {
     return (
         <div className="feed-container">
                 <h1 id='feed-title'>Feed</h1>
-                {posts.length == 0? <h1>¯\_(ツ)_/¯ <br></br> Nothing yet</h1>: ''}
+                {/* {posts.length == 0? <h1>¯\_(ツ)_/¯ <br></br> Nothing yet</h1>: ''} */}
+                {posts.length == 0? <img id='loading-spinner' src='loading_spinner.gif' />: ''}
 
                 <div className="feed-card-container">
                     {posts && Object.entries(posts).map(([post]) => 

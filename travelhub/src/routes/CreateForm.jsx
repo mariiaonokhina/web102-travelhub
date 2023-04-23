@@ -1,9 +1,26 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { supabase } from '../client'
+import axios from "axios";
 
 const CreateForm = () => {
     const [post, setPost] = useState('');
+    const [selectedImage, setSelectedImage] = useState(null);
+
+    const IMAGE_API_KEY = import.meta.env.VITE_API_KEY;
+
+    const data = new FormData();
+
+    const options = {
+        method: 'POST',
+        url: 'https://web-image-storage.p.rapidapi.com/upload',
+        headers: {
+          'X-RapidAPI-Key': IMAGE_API_KEY,
+          'X-RapidAPI-Host': 'web-image-storage.p.rapidapi.com', 
+          'Content-Type': 'multipart/form-data'
+        },
+        body: data
+      };
 
     const createPost = async (event) => {
         event.preventDefault();
@@ -15,6 +32,17 @@ const CreateForm = () => {
       
         window.location = '/';
     };
+
+    const postImage = () => {
+        data.append("image", selectedImage);
+        console.log(data)
+
+        axios.request(options).then(function (response) {
+            console.log(response.data);
+        }).catch(function (error) {
+            console.error(error);
+        });
+    }
 
     const handleChange = (event) => {
         setPost({
@@ -34,9 +62,15 @@ const CreateForm = () => {
             <textarea name='content' onChange={handleChange}></textarea>
 
             <label htmlFor="image">Upload your image (optional): </label>
-            <input type="file" name="image" accept="image/*"></input>
+            <input id='file-picker' 
+                type="file" 
+                name="image" 
+                accept="image/*" 
+                onChange={e => setSelectedImage(e.target.files[0])}
+            ></input>
 
             <button type='button' onClick={createPost}>Create Post</button>
+            <button type='button' onClick={postImage}>TEST</button>
         </form>
     )
 }
