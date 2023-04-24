@@ -10,7 +10,7 @@ const Feed = () => {
 
     useEffect(() => {
         fetchPosts();
-    }, [])
+    }, [orderByNewest, orderByPopularity, isAscending])
 
     const fetchPosts = async () => {
         const {data} = await supabase

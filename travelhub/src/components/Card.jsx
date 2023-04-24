@@ -19,7 +19,7 @@ const Card = ({created_at, post_id, title, content, image_url}) => {
             .select()
             .eq('post_id', post_id)
     
-        // setUpvotes(data[0].num_upvotes);
+        setUpvotes(data[0].num_upvotes);
     }
 
     const updateTime = () => {
