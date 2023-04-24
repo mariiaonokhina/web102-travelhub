@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { supabase } from '../client'
 import axios from "axios";
@@ -7,45 +7,58 @@ import moment from "moment";
 const CreateForm = () => {
     const [post, setPost] = useState('');
     const [selectedImage, setSelectedImage] = useState(null);
+    const [currentImageLink, setCurrentImageLink] = useState(null);
 
     const IMAGE_API_KEY = import.meta.env.VITE_API_KEY;
 
-    const data = new FormData();
-
-    const options = {
-        method: 'POST',
-        url: 'https://web-image-storage.p.rapidapi.com/upload',
-        headers: {
-          'X-RapidAPI-Key': IMAGE_API_KEY,
-          'X-RapidAPI-Host': 'web-image-storage.p.rapidapi.com', 
-          'Content-Type': 'multipart/form-data'
-        },
-        body: data
-      };
-
     const createPost = async (event) => {
         event.preventDefault();
+
+        if (selectedImage != null) {
+            await postImage();
+        }
+
+        if(selectedImage == null) {
+            await supabase.from('travelhub_posts').insert({
+                created_at: `${moment().get('year')},${moment().get('month')},${moment().date()},${moment().get('hour')},${moment().get('minute')},${moment().get('second')}`, 
+                title: post.title,
+                content: post.content,
+                num_upvotes: 0
+            });
+        }
       
-        await supabase.from('travelhub_posts').insert({
-            created_at: `${moment().get('year')},${moment().get('month')},${moment().date()},${moment().get('hour')},${moment().get('minute')},${moment().get('second')}`, 
-            title: post.title,
-            content: post.content,
-            num_upvotes: 0
-        });
+        else {
+            await supabase.from('travelhub_posts').insert({
+                created_at: `${moment().get('year')},${moment().get('month')},${moment().date()},${moment().get('hour')},${moment().get('minute')},${moment().get('second')}`, 
+                title: post.title,
+                content: post.content,
+                image_url: currentImageLink, 
+                num_upvotes: 0
+            })
+        }
       
         window.location = '/';
     };
 
     const postImage = () => {
-        data.append("image", selectedImage);
-        console.log(data)
+        const formData = new FormData();
+        formData.append("image", selectedImage);
 
-        axios.request(options).then(function (response) {
-            console.log(response.data);
-        }).catch(function (error) {
-            console.error(error);
-        });
-    }
+        fetch(
+            "https://web-image-storage.p.rapidapi.com/upload", {
+            method: "POST",
+            headers: {
+            "X-RapidAPI-Key": IMAGE_API_KEY,
+            "X-RapidAPI-Host": "web-image-storage.p.rapidapi.com",
+        },
+            body: formData,
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                setCurrentImageLink(data.url);
+            })
+            .catch((error) => console.error(error));
+    };
 
     const handleChange = (event) => {
         setPost({
@@ -64,16 +77,19 @@ const CreateForm = () => {
             <label htmlFor="content">Content: </label>
             <textarea name='content' onChange={handleChange}></textarea>
 
-            <label htmlFor="image">Upload your image (optional): </label>
-            <input id='file-picker' 
-                type="file" 
-                name="image" 
-                accept="image/*" 
-                onChange={e => setSelectedImage(e.target.files[0])}
-            ></input>
+            <div className="upload-image-div">
+                <label htmlFor="image">Upload your image (optional): </label>
+                <input id='file-picker' 
+                    type="file" 
+                    name="image" 
+                    accept="image/*" 
+                    onChange={e => setSelectedImage(e.target.files[0])}
+                ></input>
+
+                <button type='button' onClick={postImage}>Upload Image</button>
+            </div>
 
             <button type='button' onClick={createPost}>Create Post</button>
-            <button type='button' onClick={postImage}>TEST</button>
         </form>
     )
 }

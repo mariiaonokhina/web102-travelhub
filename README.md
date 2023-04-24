@@ -4,7 +4,7 @@ Submitted by: **Mariia Onokhina**
 
 This web app: **insert description**
 
-Time spent: **7** hours spent in total
+Time spent: **9** hours spent in total
 
 ## Required Features
 
@@ -30,7 +30,7 @@ The following **optional** features are implemented:
 - [ ] Users can customize the interface of the web app
 - [ ] Users can share and view web videos
 - [ ] Users can set flags while creating a post. Then users can filter posts by flags on the home feed.
-- [ ] Users can upload images directly from their local machine as an image file
+- [X] Users can upload images directly from their local machine as an image file
 - [X] Display a loading animation whenever data is being fetched
 
 The following **additional** features are implemented:
@@ -52,7 +52,7 @@ GIF created with ...
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+* When trying to connect Web Image Storage API, I was not able to post images and post other content at the same time by clicking the same button. Solved it by making 2 separate buttons: one to upload the image and another one to create post.
 
 ## License
 
