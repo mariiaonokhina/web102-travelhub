@@ -4,7 +4,7 @@ import {supabase} from '../client';
 
 const Feed = () => {
     const [posts, setPosts] = useState([]);
-    const [orderByNewest, setOrderByNewest] = useState(false);
+    const [orderByNewest, setOrderByNewest] = useState(true);
     const [orderByPopularity, setOrderByPopularity] = useState(false);
     const [isAscending, setIsAscending] = useState(false);
 
@@ -13,18 +13,33 @@ const Feed = () => {
     }, [orderByNewest, orderByPopularity, isAscending])
 
     const fetchPosts = async () => {
-        const {data} = await supabase
-            .from('travelhub_posts')
-            .select()
-            .order('created_at', { ascending: isAscending })
-    
+        if (orderByNewest == true) {
+            const {data} = await supabase
+                .from('travelhub_posts')
+                .select()
+                .order('created_at', { ascending: isAscending })
             setPosts(data);
         }
+        
+        else if (orderByPopularity == true) {
+            const {data} = await supabase
+                .from('travelhub_posts')
+                .select()
+                .order('num_upvotes', { ascending: !isAscending })
+            setPosts(data);
+        }
+    }
 
-    const changeOrder = () => {
+    const newestPostsFirst = () => {
+        setOrderByPopularity(false);
         setOrderByNewest(true);
         setIsAscending(!isAscending);
-        setOrderByPopularity(false);
+    }
+
+    const popularPostsFirst = () => {
+        setOrderByPopularity(true);
+        setOrderByNewest(false);
+        setIsAscending(!isAscending);
     }
 
     return (
@@ -33,8 +48,8 @@ const Feed = () => {
                 {posts.length == 0? <img id='loading-spinner' src='loading_spinner.gif' />: ''}
                 <div className="orderby-div">
                     <h2>Order by: </h2>
-                    <button id='newest-btn' type='button' onClick={changeOrder}>Newest</button>
-                    <button id='popularity-btn' type='button'>Most Popular</button>
+                    <button id='newest-btn' type='button' onClick={newestPostsFirst}>Newest</button>
+                    <button id='popularity-btn' type='button' onClick={popularPostsFirst}>Most Popular</button>
                 </div>
 
                 <div className="feed-card-container">
