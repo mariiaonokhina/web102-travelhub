@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { supabase } from '../client'
 import axios from "axios";
+import moment from "moment";
 
 const CreateForm = () => {
     const [post, setPost] = useState('');
@@ -25,9 +26,11 @@ const CreateForm = () => {
     const createPost = async (event) => {
         event.preventDefault();
       
-        await supabase.from('travelhub').insert({
-          title: post.title,
-          content: post.content,
+        await supabase.from('travelhub_posts').insert({
+            created_at: `${moment().get('year')},${moment().get('month')},${moment().date()},${moment().get('hour')},${moment().get('minute')},${moment().get('second')}`, 
+            title: post.title,
+            content: post.content,
+            num_upvotes: 0
         });
       
         window.location = '/';
