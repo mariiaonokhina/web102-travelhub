@@ -51,8 +51,9 @@ body {
 
 .CreateForm {
   border: 2px black solid;
-  height: 65vh;
-  width: 50%;
+  border-radius: 20px;
+  height: 80vh;
+  width: 60%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -61,6 +62,45 @@ body {
   left: 50%;
   top: 3vh;
   transform: translateX(-50%);
+}
+
+#title-input-div, #content-input-div {
+  height: fit-content;
+  width: 40vw;
+  display: flex;
+  justify-content: space-evenly;
+  place-items: center;
+  cursor: text;
+}
+
+#title-input {
+  height: 100%;
+  width: 30vw;
+}
+
+#content-input {
+  height: 100%;
+  width: 30vw;
+  resize: none;
+  height: 20vh;
+  overflow-y: scroll;
+}
+
+.upload-image-div {
+  display: flex;
+  justify-content: space-evenly;
+  place-items: center;
+  height: fit-content;
+  width: 70%;
+}
+
+#upload-img-btn, #create-post-btn {
+  cursor: pointer;
+  background-color: rgba(247, 140, 10, 0.306);
+  height: 6vh;
+  width: 10vw;
+  border: 2px solid black;
+  border-radius: 5px;
 }
 
 .feed-container {
@@ -144,12 +184,12 @@ body {
   cursor: pointer;
 }
 
-#upvotes-btn:hover {
+#upvotes-btn:hover, #upload-img-btn:hover, #create-post-btn:hover {
   background-color:rgb(170, 234, 212);
   transform: scale(103%);
 }
 
-#upvotes-btn:active {
+#upvotes-btn:active, #upload-img-btn:active, #create-post-btn:active {
   filter: brightness(90%);
 }
 

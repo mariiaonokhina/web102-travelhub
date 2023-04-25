@@ -71,12 +71,17 @@ const CreateForm = () => {
         <form className="CreateForm">
             <h1>Share your thoughts with others!</h1>
             
-            <label htmlFor="title">Title: </label>
-            <input type="text" name='title' onChange={handleChange}></input>
+            <div id='title-input-div'>
+                <label htmlFor="title">Title: </label>
+                <input id='title-input' type="text" name='title' onChange={handleChange}></input>
+            </div>
+            
 
-            <label htmlFor="content">Content: </label>
-            <textarea name='content' onChange={handleChange}></textarea>
-
+            <div id='content-input-div'>
+                <label htmlFor="content">Content: </label>
+                <textarea id='content-input' name='content' onChange={handleChange}></textarea>
+            </div>
+            
             <div className="upload-image-div">
                 <label htmlFor="image">Upload your image (optional): </label>
                 <input id='file-picker' 
@@ -86,10 +91,10 @@ const CreateForm = () => {
                     onChange={e => setSelectedImage(e.target.files[0])}
                 ></input>
 
-                <button type='button' onClick={postImage}>Upload Image</button>
+                <button id='upload-img-btn' type='button' onClick={postImage}>Upload Image</button>
             </div>
 
-            <button type='button' onClick={createPost}>Create Post</button>
+            <button id='create-post-btn' type='button' onClick={createPost}>Create Post</button>
         </form>
     )
 }
