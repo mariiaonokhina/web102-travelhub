@@ -75,11 +75,15 @@ const EditPage = () => {
                 <form className="CreateForm">
                 <h1>Edit Your Post!</h1>
                 
-                <label htmlFor="title">Title: </label>
-                <input type="text" name='title' onChange={handleChange}></input>
+                <div className="title-input-div">
+                    <label htmlFor="title">Title: </label>
+                    <input type="text" className='title-input' name='title' onChange={handleChange}></input>
+                </div>
     
-                <label htmlFor="content">Content: </label>
-                <textarea name='content' onChange={handleChange}></textarea>
+                <div className="content-input-div">
+                    <label htmlFor="content">Content: </label>
+                    <textarea className='content-input' name='content' onChange={handleChange}></textarea>
+                </div>
     
                 <div className="upload-image-div">
                     <label htmlFor="image">Upload your image (optional): </label>
@@ -90,10 +94,10 @@ const EditPage = () => {
                         onChange={e => setSelectedImage(e.target.files[0])}
                     ></input>
     
-                    <button type='button' onClick={postImage}>Upload Image</button>
+                    <button className='upload-img-btn' type='button' onClick={postImage}>Upload Image</button>
                 </div>
     
-                <button type='button' onClick={updatePost}>Create Post</button>
+                <button className='create-post-btn' type='button' onClick={updatePost}>Edit Post</button>
             </form>
                 : <img src='loading_spinner'></img>
             }

@@ -48,7 +48,7 @@ const Card = ({created_at, post_id, title, content, image_url=''}) => {
             <p>{content}</p>
             <img src={image_url} />
             <div className="card-btn-div">
-                <div id='upvotes-btn' onClick={incrementUpvotes}>
+                <div className='upvotes-btn' onClick={incrementUpvotes}>
                     {upvotes}
                     <img id='thumbs-up-pic' src='thumbs-up.svg' />
                 </div>

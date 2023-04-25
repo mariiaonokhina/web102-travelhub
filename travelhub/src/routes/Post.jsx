@@ -88,22 +88,26 @@ const Post = () => {
             : <div className="post-container">
                 <p>Posted {timeAgo}.</p>
                 <h2>{post.title}</h2>
-                <h2>{post.content}</h2>
+                <p>{post.content}</p>
 
                 {post.image_url != null? <img id='post-page-image' src={post.image_url}></img> : ''}
 
                 <div className="card-btn-div">
-                    <button id='upvotes-btn' onClick={incrementUpvotes}>{upvotes}<img src='thumbs-up.svg'></img></button>
+                    <div className='upvotes-btn' onClick={incrementUpvotes}>
+                        {upvotes}
+                        <img id='thumbs-up-pic' src='thumbs-up.svg' />
+                    </div>
+
                     <div className="action-btn-div">
-                        <Link to={`/edit/${post_id}`} id='edit-btn'><img src='edit.svg'></img></Link>
-                        <button id='delete-btn' onClick={deletePost}>Delete<img src='trash-can.svg'></img></button>
+                        <Link to={`/edit/${post_id}`} id='edit-btn'><img id='edit-btn-img' src='edit.svg'></img></Link>
+                        <img id='delete-btn' src='trash-can.svg' onClick={deletePost}></img>
                     </div>
                 </div>
 
                 <div className="comments-container">
                     <div className='posted-comments'>
                         {comms && Object.entries(comms).map(([idx]) => 
-                            <p key={idx}>{comms[idx]}</p>
+                            <p id='comment' key={idx}>- {comms[idx]}</p>
                         )}
                     </div>
 
@@ -114,7 +118,7 @@ const Post = () => {
                         placeholder="Leave a comment..."
                         onChange={handleChange}></input>
 
-                        <button type='button' onClick={postComment}>Send</button>
+                        <button id='send-comment-btn' type='button' onClick={postComment}>Send</button>
                     </form>
                 </div>
             </div>

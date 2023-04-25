@@ -64,7 +64,7 @@ body {
   transform: translateX(-50%);
 }
 
-#title-input-div, #content-input-div {
+.title-input-div, .content-input-div {
   height: fit-content;
   width: 40vw;
   display: flex;
@@ -73,12 +73,12 @@ body {
   cursor: text;
 }
 
-#title-input {
+.title-input {
   height: 100%;
   width: 30vw;
 }
 
-#content-input {
+.content-input {
   height: 100%;
   width: 30vw;
   resize: none;
@@ -94,7 +94,7 @@ body {
   width: 70%;
 }
 
-#upload-img-btn, #create-post-btn {
+.upload-img-btn, .create-post-btn {
   cursor: pointer;
   background-color: rgba(247, 140, 10, 0.306);
   height: 6vh;
@@ -171,7 +171,7 @@ body {
   filter: brightness(90%);
 }
 
-#upvotes-btn {
+.upvotes-btn {
   display: flex;
   flex-direction: row;
   place-items: center;
@@ -184,12 +184,12 @@ body {
   cursor: pointer;
 }
 
-#upvotes-btn:hover, #upload-img-btn:hover, #create-post-btn:hover {
+.upvotes-btn:hover, #upload-img-btn:hover, #create-post-btn:hover, #send-comment-btn:hover {
   background-color:rgb(170, 234, 212);
   transform: scale(103%);
 }
 
-#upvotes-btn:active, #upload-img-btn:active, #create-post-btn:active {
+.upvotes-btn:active, #upload-img-btn:active, #create-post-btn:active, #send-comment-btn:active {
   filter: brightness(90%);
 }
 
@@ -214,4 +214,90 @@ body {
 
 #open-post-btn:hover {
   transform: scale(103%);
+}
+
+.PostPage {
+  height: fit-content;
+  width: 100vw;
+  padding: 3vh 0vw;
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+}
+
+.post-container {
+  background-color: rgba(247, 140, 10, 0.306);
+  width: 77vw;
+  height: fit-content;
+  padding: 3vh 3vw;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  place-items: start;
+}
+
+#post-page-image {
+  max-height: 65vh;
+  place-self: center;
+}
+
+.card-btn-div {
+  height: fit-content;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  place-items: center;
+  justify-content: space-between;
+  margin-bottom: 2vh;
+}
+
+.action-btn-div {
+  height: 100%;
+  width: 10vw;
+  display: flex;
+  flex-direction: row;
+  place-items: center;
+  justify-content: space-evenly;
+}
+
+#edit-btn-img {
+  height: 5vh;
+}
+
+#delete-btn {
+  height: 5vh;
+}
+
+.comments-container {
+  height: fit-content;
+  width: 100%;
+  padding: 1vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#comment {
+  padding-left: 2vw;
+  margin-bottom: 1vh;
+}
+.comment-form {
+  height: fit-content;
+  width: 100%;
+  margin-top: 1vh;
+  display: flex;
+  flex-direction: row;
+  place-items: start;
+}
+
+.comment-input {
+  height: 100%;
+  width: 90%;
+}
+
+#send-comment-btn {
+  background-color: transparent;
+  height: 100%;
+  width: 10%;
+  border: 2px black solid;
+  cursor: pointer;
 }
