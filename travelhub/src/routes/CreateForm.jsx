@@ -15,7 +15,7 @@ const CreateForm = () => {
         event.preventDefault();
 
         if (selectedImage != null) {
-            await postImage();
+            postImage();
         }
 
         if(selectedImage == null) {

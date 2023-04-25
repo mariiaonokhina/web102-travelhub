@@ -44,7 +44,7 @@ const Card = ({created_at, post_id, title, content, image_url}) => {
     return (
         <div id='Card'>
             <p>Posted {timeAgo}.</p>
-            <h1>{title}</h1>
+            <h3>{title}</h3>
             <p>{content}</p>
             <img src={image_url} />
             <div className="card-btn-div">
