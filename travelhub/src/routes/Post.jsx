@@ -1,5 +1,5 @@
-import React, { Component, useEffect, useState } from "react";
-import { Routes, Route, useParams } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useParams } from 'react-router-dom';
 import moment from 'moment';
 import { supabase } from "../client";
 import { Link } from "react-router-dom";
@@ -8,6 +8,8 @@ const Post = () => {
     const {post_id} = useParams();
     const [post, setPost] = useState(null);
     const [upvotes, setUpvotes] = useState(0);
+    let [comms, setComms] = useState([]);
+    const [currentComment, setCurrentComment] = useState("");
     const [timeAgo, setTimeAgo] = useState('');
 
     useEffect(() => {
@@ -16,7 +18,7 @@ const Post = () => {
         if (post != null) {
             updateTime();
         }
-      }, [post, upvotes, timeAgo])
+      }, [comms])
 
     const fetchPost = async () => {
         const {data} = await supabase
@@ -26,6 +28,7 @@ const Post = () => {
 
         setPost(data[0]);
         setUpvotes(data[0].num_upvotes);
+        setComms((data[0].comments));
     }
 
     const updateTime = () => {
@@ -54,6 +57,30 @@ const Post = () => {
         window.location = "/";
     }
 
+    const handleChange = (event) => {
+        setCurrentComment({
+            ...currentComment,
+            [event.target.name]: event.target.value,
+        });
+    };
+
+    const postComment = async () => {
+        if (comms == null) {
+            comms = [currentComment['comment']];
+            setComms(comms);
+        }
+
+        else {
+            comms.push(currentComment['comment'])
+        }
+
+        await supabase
+            .from('travelhub_posts')
+            .update({comments: comms})
+            .eq('post_id', post_id)
+            .select()
+    }
+
     return (
         <div className="PostPage">
             {post == null? <img id='loading-spinner' src='loading_spinner.gif' />
@@ -71,6 +98,24 @@ const Post = () => {
                         <Link to={`/edit/${post_id}`} id='edit-btn'><img src='edit.svg'></img></Link>
                         <button id='delete-btn' onClick={deletePost}>Delete<img src='trash-can.svg'></img></button>
                     </div>
+                </div>
+
+                <div className="comments-container">
+                    <div className='posted-comments'>
+                        {comms && Object.entries(comms).map(([idx]) => 
+                            <p key={idx}>{comms[idx]}</p>
+                        )}
+                    </div>
+
+                    <form className="comment-form">
+                        <input className='comment-input' 
+                        name='comment' 
+                        type='text' 
+                        placeholder="Leave a comment..."
+                        onChange={handleChange}></input>
+
+                        <button type='button' onClick={postComment}>Send</button>
+                    </form>
                 </div>
             </div>
             }
