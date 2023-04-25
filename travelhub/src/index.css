@@ -62,3 +62,116 @@ body {
   top: 3vh;
   transform: translateX(-50%);
 }
+
+.feed-container {
+  height: 92vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+}
+
+.orderby-div {
+  height: 5vh;
+  width: 25vw;
+  place-self: start;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-left: 8vw;
+}
+
+.feed-card-container {
+  height: fit-content;
+  width: 100vw;;
+  padding: 3vh 0vw;
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+}
+
+.Card {
+  background-color: rgba(247, 140, 10, 0.306);
+  height: fit-content;
+  min-height: 20vh;
+  width: 80vw;
+  margin: 2vh;
+  padding: 2.5vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 20px;
+}
+
+.title-in-card {
+  font-size: x-large;
+}
+
+.card-btn-div {
+  height: fit-content;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 3vh;
+}
+
+#newest-btn, #popularity-btn {
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#newest-btn:hover, #popularity-btn:hover {
+  background-color:rgba(205, 212, 210, 0.747);
+}
+
+#newest-btn:active, #popularity-btn:active {
+  filter: brightness(90%);
+}
+
+#upvotes-btn {
+  display: flex;
+  flex-direction: row;
+  place-items: center;
+  justify-content: space-evenly;
+  width: 3vw;
+  height: 3vh;
+  background-color: none;
+  border: 2px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#upvotes-btn:hover {
+  background-color:rgb(170, 234, 212);
+  transform: scale(103%);
+}
+
+#upvotes-btn:active {
+  filter: brightness(90%);
+}
+
+#thumbs-up-pic {
+  height: 2vh;
+}
+
+#arrow-right-pic {
+  height: 15px;
+}
+
+#open-post-btn, #open-post-btn:visited {
+  text-decoration: none;
+  color: black;
+  height: fit-content;
+  width: 10vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  place-items: center;
+}
+
+#open-post-btn:hover {
+  transform: scale(103%);
+}

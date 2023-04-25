@@ -2,9 +2,9 @@
 
 Submitted by: **Mariia Onokhina**
 
-This web app: **insert description**
+This web app: **is a travel forum where travelers can share their thoughts, opinions, and questions about their destinations.**
 
-Time spent: **13** hours spent in total
+Time spent: **15** hours spent in total
 
 ## Required Features
 

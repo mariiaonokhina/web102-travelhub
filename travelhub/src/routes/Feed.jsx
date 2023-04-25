@@ -59,7 +59,6 @@ const Feed = () => {
                                 created_at={posts[post].created_at} 
                                 title={posts[post].title} 
                                 content={posts[post].content} 
-                                image_url={posts[post].image_url}
                         />
                     )}
                     

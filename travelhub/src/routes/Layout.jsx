@@ -1,5 +1,4 @@
 import { Outlet, Link } from "react-router-dom";
-import SearchBar from "../components/SearchBar";
 
 const Layout = () => {
   return (
@@ -13,10 +12,6 @@ const Layout = () => {
           </li>
 
         <div className='right-navbar'>
-          <li className="search navbar-item" key="search">
-            <SearchBar />
-          </li>
-
           <li className="home-link navbar-item" key="home-button">
             <Link className='link-item' to="/">
               Home
